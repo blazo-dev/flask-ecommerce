@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from config import Config
@@ -13,9 +14,10 @@ CORS(app)
 # Apply the configurations to the app
 app.config.from_object(Config)
 
-# Initialize SQLAlchemy and JWT for the app
+# Initialize SQLAlchemy, Marshmallow and JWT for the app
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+ma = Marshmallow(app)
 
 from api.routes import api_routes_bp
 
