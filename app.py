@@ -5,28 +5,39 @@ from flask_jwt_extended import JWTManager
 from config import Config
 from flask_cors import CORS
 
-# -----------------------------------
-# Initialize the Flask application
-# -----------------------------------
-app = Flask(__name__)
-CORS(app)
+db = SQLAlchemy()
+jwt = JWTManager()
+ma = Marshmallow()
 
-# Apply the configurations to the app
-app.config.from_object(Config)
 
-# Initialize SQLAlchemy, Marshmallow and JWT for the app
-db = SQLAlchemy(app)
-jwt = JWTManager(app)
-ma = Marshmallow(app)
+def create_app():
+    # -----------------------------------
+    # Initialize the Flask application
+    # -----------------------------------
+    app = Flask(__name__)
+    CORS(app)
 
-from api.routes import api_routes_bp
+    # Apply the configurations to the app
+    app.config.from_object(Config)
 
-app.register_blueprint(api_routes_bp, url_prefix='/api')
+    # Initialize SQLAlchemy, Marshmallow and JWT for the app
+    db.init_app(app)
+    jwt.init_app(app)
+    ma.init_app(app)
 
-# Ensure all tables defined in models are created in the database
-with app.app_context():
-    db.create_all()
-    print("Tables created successfully!")
+    from api.routes import api_routes_bp
+
+    app.register_blueprint(api_routes_bp, url_prefix='/api')
+
+    # Ensure all tables defined in models are created in the database
+    with app.app_context():
+        db.create_all()
+        print("Tables created successfully!")
+
+    return app
+
+
+app = create_app()
 
 if __name__ == '__main__':
     # Run the Flask app in debug mode
