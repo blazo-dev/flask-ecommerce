@@ -1,9 +1,8 @@
 from flask import Blueprint, jsonify, request
-from marshmallow import ValidationError
 
-from api.models import Order, User, Product, OrderProduct
-from api.schemas import ProductSchema
-from api.schemas.orders import OrderSchema
+from app.models import Order, User, Product, OrderProduct
+from app.schemas import ProductSchema
+from app.schemas.orders import OrderSchema
 from app import db
 
 orders_bp = Blueprint('orders', __name__)

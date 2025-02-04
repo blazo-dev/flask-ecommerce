@@ -1,5 +1,5 @@
 from marshmallow import validates, fields, ValidationError
-from api.models import User
+from app.models import User
 from utils import is_blank, is_valid_email
 from app import ma
 

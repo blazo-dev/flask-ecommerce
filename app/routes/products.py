@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
 
-from api.models import Product
+from app.models import Product
 from app import db
-from api.schemas import ProductSchema
+from app.schemas import ProductSchema
 
 products_bp = Blueprint('products', __name__)
 

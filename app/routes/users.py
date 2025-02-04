@@ -3,8 +3,8 @@ from marshmallow import ValidationError
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash
 
-from api.models import User
-from api.schemas import UserSchema
+from app.models import User
+from app.schemas import UserSchema
 from app import db
 
 users_bp = Blueprint('users', __name__)

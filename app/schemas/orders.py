@@ -1,6 +1,6 @@
 from marshmallow import validates, fields, ValidationError
 
-from api.models import Order
+from app.models import Order
 from app import ma
 
 

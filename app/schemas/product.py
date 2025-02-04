@@ -1,6 +1,6 @@
 from marshmallow import validates, fields, ValidationError
 
-from api.models import Product
+from app.models import Product
 from app import ma
 from utils import is_blank
 
